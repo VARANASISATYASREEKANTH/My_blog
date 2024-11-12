@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Deploying an application using Kubernetes involves several steps. Here's a step-by-step guide to help you:
 
 1. Prepare Your Application
@@ -91,3 +92,98 @@ kubectl set image deployment/my-app my-app=<new-container-image>
 8. Automate with CI/CD
 Integrate with CI/CD tools like Jenkins, GitHub Actions, or GitLab CI/CD to automate deployments.
 
+=======
+Deploying an application using Kubernetes involves several steps. Here's a step-by-step guide to help you:
+
+1. Prepare Your Application
+Ensure your application is containerized (e.g., using Docker).
+Push your container image to a container registry like Docker Hub, Amazon ECR, or Google Container Registry.
+
+2. Set Up Kubernetes Cluster
+Cloud Providers: Use managed Kubernetes services like Google Kubernetes Engine (GKE), Amazon Elastic Kubernetes Service (EKS), or Azure Kubernetes Service (AKS).
+Local Development: Use tools like Minikube or Kind for running Kubernetes locally.
+
+3. Install Kubernetes CLI (kubectl)
+Install kubectl to interact with your cluster.
+Configure kubectl to point to your Kubernetes cluster (use kubectl config).
+
+4. Write Kubernetes Configuration Files
+Kubernetes uses YAML files to define desired states.
+
+a. Deployment YAML
+Defines how to deploy and manage your application.
+
+yaml Copy code
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app
+        image: <your-container-image>
+        ports:
+        - containerPort: 80
+b. Service YAML
+Exposes your application to the network.
+
+yaml
+Copy code
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  selector:
+    app: my-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+c. Optional Configurations
+Ingress for advanced routing and SSL termination.
+ConfigMaps for application configuration.
+Secrets for sensitive data.
+5. Deploy to Kubernetes
+Apply the configuration files:
+bash
+Copy code
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+Verify resources:
+bash
+Copy code
+kubectl get pods
+kubectl get services
+6. Monitor and Debug
+Check application logs:
+bash
+Copy code
+kubectl logs <pod-name>
+Debug issues:
+bash
+Copy code
+kubectl describe pod <pod-name>
+7. Scale or Update
+Scale the application:
+bash
+Copy code
+kubectl scale deployment my-app --replicas=4
+Update the deployment:
+bash
+Copy code
+kubectl set image deployment/my-app my-app=<new-container-image>
+8. Automate with CI/CD
+Integrate with CI/CD tools like Jenkins, GitHub Actions, or GitLab CI/CD to automate deployments.
+
+>>>>>>> f9fc97be4b306e9aa26350441b6eca6e8c1f7bcf
