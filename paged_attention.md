@@ -1,6 +1,4 @@
-## How do the Paged Attention(PA) saves memory, particularly in case of large language models
-# Understanding PagedAttention in Large Language Models
-
+# How do the Paged Attention(PA) saves memory, particularly in case of large language models
 In traditional Large Language Model (LLM) serving, memory management for the **Key-Value (KV) Cache** is the primary bottleneck. **PagedAttention**, the core algorithm behind the vLLM engine, solves this by applying the concept of **Virtual Memory** from operating systems to the GPU's memory.
 
 ## Key Mechanisms for Memory Efficiency
